@@ -1,0 +1,47 @@
+* Generate Texture Coordinates
+    * generate for cylinder
+    * generate for boxes
+    * generate for ground plane
+
+* Texture Loading
+    * Load texture onto cylinder
+    * Load texture onto box
+    * Load texture onto ground plane
+    ** Texture Replace 
+    ** Texture Blend (light + shading)
+
+* Filtering ???
+    * Magnification Smooth
+    * Magifnication Simple
+    * Minification Smooth
+    * Minification Simple
+
+* Mesh now uses:
+    * per face normals
+    * per vertex normals
+    * per vertex texture coordinates
+
+* Visualize Per Face Normal Vectors
+
+* Compute Per Vertex Normal
+    * Simple Average
+    * Weighted Average
+    * Visualization
+
+* Check Crease Angle for Per Vertex Normals
+    * Modify angle to be 15, 25, 35
+
+* Shading
+    * Materials Diffuse
+    * Materials Specular
+    * Materials Design
+
+* Move light source
+
+* Overview Navigation
+
+* First Person Navigation
+
+** Procedural Ground Plane Generation
+
+
