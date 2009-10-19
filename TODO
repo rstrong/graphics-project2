@@ -44,4 +44,6 @@
 
 ** Procedural Ground Plane Generation
 
-
+10/19: 
+  Simple per face normals
+  if time: per vertex normals
