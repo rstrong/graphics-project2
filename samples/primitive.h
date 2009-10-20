@@ -19,25 +19,24 @@ void generateCylinder(Mesh* i)
 
   for(f = 0; f < (i->m_v.size() - 2) - 2; f += 2)
   {
-    i->m_vi.push_back(f);
-    i->m_vi.push_back(f+2);
     i->m_vi.push_back(f+1);
+    i->m_vi.push_back(f+2);
+    i->m_vi.push_back(f);
     
     // side of i triangle two
-    i->m_vi.push_back(f+2);
-    i->m_vi.push_back(f+3);
     i->m_vi.push_back(f+1);
+    i->m_vi.push_back(f+3);
+    i->m_vi.push_back(f+2);
 
     // top of i
     i->m_vi.push_back(f+1);
+    i->m_vi.push_back(i->m_v.size()-1);
     i->m_vi.push_back(f+3);
-    i->m_vi.push_back(i->m_v.size());
-
+    
     //bottom of i
-    i->m_vi.push_back(f);
     i->m_vi.push_back(f + 2);
-    i->m_vi.push_back(i->m_v.size() -1);
-
+    i->m_vi.push_back(i->m_v.size());
+    i->m_vi.push_back(f);
   }
   
 }

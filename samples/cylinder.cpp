@@ -124,7 +124,7 @@ void idle()
 void init(void)
 {
   makeCheckImage();
-  generateCube(&cylinder);
+  generateCylinder(&cylinder);
   generatePerFaceNormals(&cylinder);
 }
 main(int argc, char** argv)
