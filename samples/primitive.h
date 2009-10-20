@@ -72,19 +72,19 @@ void generateCube(Mesh *i)
   i->m_vi.push_back(1); i->m_vi.push_back(0); i->m_vi.push_back(2);
   i->m_vi.push_back(3); i->m_vi.push_back(1); i->m_vi.push_back(2);
 
-  i->m_vi.push_back(5); i->m_vi.push_back(4); i->m_vi.push_back(6);
-  i->m_vi.push_back(7); i->m_vi.push_back(5); i->m_vi.push_back(6);
+  i->m_vi.push_back(6); i->m_vi.push_back(4); i->m_vi.push_back(5);
+  i->m_vi.push_back(6); i->m_vi.push_back(5); i->m_vi.push_back(7);
 
-  i->m_vi.push_back(1); i->m_vi.push_back(0); i->m_vi.push_back(4);
-  i->m_vi.push_back(5); i->m_vi.push_back(1); i->m_vi.push_back(4);
+  i->m_vi.push_back(4); i->m_vi.push_back(0); i->m_vi.push_back(1);
+  i->m_vi.push_back(4); i->m_vi.push_back(1); i->m_vi.push_back(5);
 
   i->m_vi.push_back(0); i->m_vi.push_back(4); i->m_vi.push_back(6);
   i->m_vi.push_back(2); i->m_vi.push_back(0); i->m_vi.push_back(6);
 
-  i->m_vi.push_back(7); i->m_vi.push_back(6); i->m_vi.push_back(2);
-  i->m_vi.push_back(3); i->m_vi.push_back(7); i->m_vi.push_back(2);
+  i->m_vi.push_back(2); i->m_vi.push_back(6); i->m_vi.push_back(7);
+  i->m_vi.push_back(2); i->m_vi.push_back(7); i->m_vi.push_back(3);
 
-  i->m_vi.push_back(1); i->m_vi.push_back(5); i->m_vi.push_back(7);
-  i->m_vi.push_back(3); i->m_vi.push_back(1); i->m_vi.push_back(7);
+  i->m_vi.push_back(7); i->m_vi.push_back(5); i->m_vi.push_back(1);
+  i->m_vi.push_back(7); i->m_vi.push_back(1); i->m_vi.push_back(3);
 
 }

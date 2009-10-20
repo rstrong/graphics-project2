@@ -39,9 +39,10 @@ void generatePerFaceNormals(Mesh *t)
 
   for(i = 0; i < vi.size(); i+=3)
   {
-    Vec3f ab = v[vi[i+1]] - v[vi[i]]; 
-    Vec3f ac = v[vi[i+2]] - v[vi[i]];
+    Vec3f ab = v[vi[i]] - v[vi[i+1]]; 
+    Vec3f ac = v[vi[i]] - v[vi[i+2]];
     Vec3f temp = ab.cross(ac);
+    temp = temp.normalize();
     t->m_nf.push_back(temp);
   }
 }
