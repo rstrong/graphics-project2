@@ -68,5 +68,52 @@ void renderPerFaceNormals(Mesh *t)
     glEnd();
     c++;
   }
-
 }
+
+
+void generatePerVertexNormals(bool weighted, Mesh *t)
+{
+  std::vector<Vec3f> v = t->m_v;
+  std::vector<int> vi = t->m_vi;
+  std::vector<Vec3f> nf = t->m_nf;
+  std::vector<Vec3f> nv;
+  std::vector< std::vector<int> > v_t_membr; // contains vertex -> triangle membership
+  unsigned int i = 0;
+  int j = 0;
+
+  // traverse every triangle, building membership
+  for(i = 0; i < vi.size(); i += 3)
+  {
+    v_t_membr[vi[i]].push_back(j);
+    v_t_membr[vi[i+1]].push_back(j);
+    v_t_membr[vi[i+2]].push_back(j);
+    j++;
+  }
+  
+  for(i = 0; i < v_t_membr.size(); i++)
+  {
+     for(j = 0; j < v_t_membr[i].size(); j++)
+     {
+       //TODO
+
+     }
+  }
+  
+}
+
+bool isLessCrease(Vec3f a, Vec3f b, int creaseAngle)
+{
+  bool isLess = false;
+  float dotp = a.dot(b);
+  dotp = dotp / (a.length() * b.length());
+  float angle = acos(dotp);
+  angle = ((float)180/PI)*angle;
+
+  if(angle < creaseAngle)
+  {
+    isLess = true;
+  }
+
+  return isLess;
+}
+
