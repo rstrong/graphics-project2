@@ -87,3 +87,38 @@ void generateCube(Mesh *i)
   i->m_vi.push_back(7); i->m_vi.push_back(1); i->m_vi.push_back(3);
 
 }
+
+// 0 -> flat
+// 1 -> 
+// 2 -> marble
+void generatePlane(Mesh *i, int type)
+{
+  int x,y;
+
+  for(x = -250; x < 251; x++)
+  {
+    for(y = -250; y < 251; y++)
+    {
+      if(type == 0)
+      {
+        i->m_v.push_back(Vec3f(x, y, 0));
+        i->m_t.push_back(Vec3f(0,0,0));
+      }
+    }
+  }
+
+
+  for(x = 0; x < 499; x++)
+  {
+    for(y = 0; y < 499; y++)
+    {
+      i->m_vi.push_back(y + (x*500));
+      i->m_vi.push_back(y+ (x*500) + 500);
+      i->m_vi.push_back(y + (x*500) + 501);
+
+      i->m_vi.push_back(y + (x*500) + 501);
+      i->m_vi.push_back(y + (x*500) + 1);
+      i->m_vi.push_back(y + (x*500) + 2);
+    }
+  }
+}

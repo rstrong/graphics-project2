@@ -50,7 +50,7 @@ void main_reshape(int width, int height)
   glViewport(0, 0, width, height);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(45.0f, (float)width / (float)height, 0.1f, 10.0f);
+  gluPerspective(45.0f, (float)width / (float)height, 0.1f, 20.0f);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
@@ -80,10 +80,12 @@ void main_display()
   texture();
   glColor3f(1.0, 0.3, 0.2); 
   //glEnable(GL_TEXTURE_2D);
-  
+  glPushMatrix();
+  glScalef(0.01, 0.01, 0.01); 
   renderObject(&cylinder);
   glColor3f(1.0, 0.6, 0.8);
   renderPerFaceNormals(&cylinder);
+  glPopMatrix();
   glutSwapBuffers();
 }
 
@@ -124,7 +126,7 @@ void idle()
 void init(void)
 {
   makeCheckImage();
-  generateCylinder(&cylinder);
+  generatePlane(&cylinder,0);
   generatePerFaceNormals(&cylinder);
 }
 main(int argc, char** argv)
