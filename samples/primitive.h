@@ -1,6 +1,6 @@
 #include <vector>
 #include <mathutil.h>
-#include "PerlinNoise.h"
+#include "noise.h"
 
 void generateCylinder(Mesh* i)
 {
@@ -102,7 +102,17 @@ void generatePlane(Mesh *i, int type)
     {
       if(type == 0)
       {
-        i->m_v.push_back(Vec3f(x, y, 0));
+        i->m_v.push_back(Vec3f(x/100, y/100, 0));
+        i->m_t.push_back(Vec3f(0,0,0));
+      }
+      if(type == 1)
+      {
+        i->m_v.push_back(Vec3f(x/100,y/100,SumNoise(x,y)));
+        i->m_t.push_back(Vec3f(0,0,0));
+      }
+      if(type == 2)
+      {
+        i->m_v.push_back(Vec3f(x/100, y/100, MarbleNoise(x,y)));
         i->m_t.push_back(Vec3f(0,0,0));
       }
     }
@@ -117,8 +127,8 @@ void generatePlane(Mesh *i, int type)
       i->m_vi.push_back(y+ (x*500) + 500);
       i->m_vi.push_back(y + (x*500) + 501);
 
-      i->m_vi.push_back(y + (x*500) + 501);
       i->m_vi.push_back(y + (x*500) + 1);
+      i->m_vi.push_back(y + (x*500) + 501);
       i->m_vi.push_back(y + (x*500) + 2);
     }
   }

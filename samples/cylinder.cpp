@@ -81,10 +81,11 @@ void main_display()
   glColor3f(1.0, 0.3, 0.2); 
   //glEnable(GL_TEXTURE_2D);
   glPushMatrix();
-  glScalef(0.01, 0.01, 0.01); 
+  //glScalef(0.001, 0.001, 0.001); 
+  //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); 
   renderObject(&cylinder);
   glColor3f(1.0, 0.6, 0.8);
-  renderPerFaceNormals(&cylinder);
+ // renderPerFaceNormals(&cylinder);
   glPopMatrix();
   glutSwapBuffers();
 }
@@ -94,22 +95,22 @@ void main_keyboard(unsigned char key, int x, int y)
   switch(key)
   {
     case 'u' : 
-      eyex += 0.1;
+      eyex += 0.01;
       break;
     case 'i' :
-      eyex -= 0.1;
+      eyex -= 0.01;
       break;
     case 'j' :
-      eyey += 0.1;
+      eyey += 0.01;
       break;
     case 'k' : 
-      eyey -= 0.1;
+      eyey -= 0.01;
       break;
     case 'n' :
-      eyez += 0.1;
+      eyez += 0.01;
       break;
     case 'm' : 
-      eyez -= 0.1;
+      eyez -= 0.01;
       break;
     default:
       break;
@@ -126,7 +127,7 @@ void idle()
 void init(void)
 {
   makeCheckImage();
-  generatePlane(&cylinder,0);
+  generatePlane(&cylinder,1);
   generatePerFaceNormals(&cylinder);
 }
 main(int argc, char** argv)

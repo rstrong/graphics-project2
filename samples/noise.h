@@ -12,29 +12,34 @@ double  PlainNoise(int x, int y)
   return n;
 }
 
+// Will return value between -1 and 0
 double SumNoise(int x, int y)
 {
   // always use 7 band 
-  int bands = 7;
-  double scale = 0.05;
-  int i = 0;
-  double n;
-  double amp = 0.5;
-
-  for(i = 0; i < bands; i++)
+  double scale = 0.03;
+  double n = 0;
+  double amp = 2;
+  for(int i = 1; i < 8; i++)
   {
-    n +=  noise.noise(pow(x*scale, (i+1)), pow(y*scale, (i+1)), 11.5);
+    n += (pow(amp, -i)) * noise.noise(x*(pow(scale, i)), y*(pow(scale,i)), 11.5);
   }
-
+  n = n - 0.4;
   return n;
 }
 
+// will return value between -1 and 0
 double MarbleNoise(int x, int y)
 {
-  double scale = 0.02;
+  double scale = 0.03;
   double n;
-
-  n = cos(noise.noise(x * scale , y * scale, 11.5));
+  double amp = 2;
+  for(int i = 1; i < 5; i++)
+  {
+    n += (pow(amp, -i)) * noise.noise(x*(pow(scale, i)), y*(pow(scale,i)), 11.5);
+  }
+  n = sin((double)n);
+  n = n/1.8;
+  n = n - 0.3;
 
   return n;
 }
