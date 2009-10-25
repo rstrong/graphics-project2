@@ -1,5 +1,6 @@
 #include <vector>
 #include <mathutil.h>
+#include "PerlinNoise.h"
 
 void generateCylinder(Mesh* i)
 {
