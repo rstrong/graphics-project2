@@ -85,7 +85,7 @@ void main_display()
   //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); 
   renderObject(&cylinder);
   glColor3f(1.0, 0.6, 0.8);
- // renderPerFaceNormals(&cylinder);
+  renderPerVertexNormals(&cylinder);
   glPopMatrix();
   glutSwapBuffers();
 }
@@ -95,22 +95,22 @@ void main_keyboard(unsigned char key, int x, int y)
   switch(key)
   {
     case 'u' : 
-      eyex += 0.01;
+      eyex += 0.1;
       break;
     case 'i' :
-      eyex -= 0.01;
+      eyex -= 0.1;
       break;
     case 'j' :
-      eyey += 0.01;
+      eyey += 0.1;
       break;
     case 'k' : 
-      eyey -= 0.01;
+      eyey -= 0.1;
       break;
     case 'n' :
-      eyez += 0.01;
+      eyez += 0.1;
       break;
     case 'm' : 
-      eyez -= 0.01;
+      eyez -= 0.1;
       break;
     default:
       break;
@@ -127,8 +127,9 @@ void idle()
 void init(void)
 {
   makeCheckImage();
-  generatePlane(&cylinder,1);
+  generateCylinder(&cylinder);
   generatePerFaceNormals(&cylinder);
+  generatePerVertexNormals(false, &cylinder, 0);
 }
 main(int argc, char** argv)
 {

@@ -70,33 +70,63 @@ void renderPerFaceNormals(Mesh *t)
   }
 }
 
+void renderPerVertexNormals(Mesh *t)
+{
+  std::vector<Vec3f> v = t->m_v;
+  std::vector<int> vi = t->m_vi;
+  std::vector<Vec3f> n = t->m_nv;
 
-void generatePerVertexNormals(bool weighted, Mesh *t)
+  unsigned int i;
+  unsigned int c = 0;
+
+  for(int i = 0; i < v.size(); i++)
+  {
+    double x = v[i].x;
+    double y = v[i].y;
+    double z = v[i].z;
+    n[i] *= 1.5;
+    glBegin(GL_LINES);
+    glVertex3f(x,y,z);
+    glVertex3f(x+n[i].x, y+n[i].y, z+n[i].z);
+    glEnd();
+  }
+}
+
+void generatePerVertexNormals(bool weighted, Mesh *t, int cangle)
 {
   std::vector<Vec3f> v = t->m_v;
   std::vector<int> vi = t->m_vi;
   std::vector<Vec3f> nf = t->m_nf;
   std::vector<Vec3f> nv;
-  std::vector< std::vector<int> > v_t_membr; // contains vertex -> triangle membership
+  std::vector<int> v_t_membr[vi.size()]; // contains vertex -> triangle membership
+  std::vector<double> v_t_a; // contains area of every triangle
   unsigned int i = 0;
   int j = 0;
 
-  // traverse every triangle, building membership
+  // traverse every triangle, building membership + area
   for(i = 0; i < vi.size(); i += 3)
   {
     v_t_membr[vi[i]].push_back(j);
     v_t_membr[vi[i+1]].push_back(j);
     v_t_membr[vi[i+2]].push_back(j);
     j++;
+
+    Vec3f ab = v[vi[i+1]] - v[vi[i]];
+    Vec3f ac = v[vi[i+2]] - v[vi[i]];
+    double area = ab.cross(ac).length() / 2;
+    v_t_a.push_back(area); 
   }
   
-  for(i = 0; i < v_t_membr.size(); i++)
+  Vec3f temp;
+  for(i = 0; i < v.size(); i++)
   {
-     for(j = 0; j < v_t_membr[i].size(); j++)
-     {
-       //TODO
-
-     }
+    temp.x = 0; temp.y = 0; temp.z = 0;
+    for(j =0; j < v_t_membr[i].size(); j++)
+    {
+       temp = temp + nf[v_t_membr[i][j]]; 
+    }
+    temp = temp.normalize();
+    t->m_nv.push_back(temp);
   }
   
 }
