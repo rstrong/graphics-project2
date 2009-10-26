@@ -129,7 +129,7 @@ void init(void)
   makeCheckImage();
   generateCylinder(&cylinder);
   generatePerFaceNormals(&cylinder);
-  generatePerVertexNormals(false, &cylinder, 0);
+  generatePerVertexNormals(true, &cylinder, 30);
 }
 main(int argc, char** argv)
 {

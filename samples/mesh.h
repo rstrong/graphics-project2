@@ -1,6 +1,9 @@
 #include <vector>
 #include <mathutil.h>
 
+bool isLessCrease(Vec3f, Vec3f, int);
+
+
 struct Mesh
 { 
   std::vector<Vec3f> m_v; //vertex
@@ -123,7 +126,41 @@ void generatePerVertexNormals(bool weighted, Mesh *t, int cangle)
     temp.x = 0; temp.y = 0; temp.z = 0;
     for(j =0; j < v_t_membr[i].size(); j++)
     {
-       temp = temp + nf[v_t_membr[i][j]]; 
+      if(weighted)
+      {
+        if(j == 0)
+        {
+
+          temp.x = temp.x + (v_t_a[i] * nf[v_t_membr[i][j]].x);
+          temp.y = temp.y + (v_t_a[i] * nf[v_t_membr[i][j]].y);
+          temp.z = temp.z + (v_t_a[i] * nf[v_t_membr[i][j]].z);
+        }
+        else
+        {
+          if(!isLessCrease(nf[v_t_membr[i][0]], nf[v_t_membr[i][j]],cangle))
+          {
+            temp.x = temp.x + (v_t_a[i] * nf[v_t_membr[i][j]].x);
+            temp.y = temp.y + (v_t_a[i] * nf[v_t_membr[i][j]].y);
+            temp.z = temp.z + (v_t_a[i] * nf[v_t_membr[i][j]].z);
+          }
+        }
+      }
+      else
+      {
+        if(j == 0)
+        {
+          temp = temp + nf[v_t_membr[i][j]];
+        }
+        else
+        {
+          if(!isLessCrease(nf[v_t_membr[i][0]], nf[v_t_membr[i][j]], cangle))
+          {
+            temp.x = temp.x + (v_t_a[i] * nf[v_t_membr[i][j]].x);
+            temp.y = temp.y + (v_t_a[i] * nf[v_t_membr[i][j]].y);
+            temp.z = temp.z + (v_t_a[i] * nf[v_t_membr[i][j]].z);
+          }
+        }
+      }
     }
     temp = temp.normalize();
     t->m_nv.push_back(temp);
