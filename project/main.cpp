@@ -19,9 +19,12 @@ float eyez = 0;
 int WIDTH = 1024;
 int HEIGHT = 768;
 // need to go into another .h
+void redisplay_all(void);
 int top_width, top_height, bottom_width, bottom_height;
 int window, top, bottom;
 #define GAP 15
+
+Mesh test;
 
 void main_reshape(int width, int height)
 {
@@ -80,10 +83,10 @@ void main_keyboard(unsigned char key, int x, int y)
       break;
   }
   std::cout << "EYEZ: " << eyex << " " << eyey << " " << eyez << std::endl;
-  main_reshape(WIDTH, HEIGHT);
+  redisplay_all();
 }
 
-void top_reshape(int height, int width)
+void top_reshape(int width, int height)
 {
   glViewport(0, 0, width, height);
   glMatrixMode(GL_PROJECTION);
@@ -91,7 +94,7 @@ void top_reshape(int height, int width)
   gluPerspective(45.0f, (float)width / (float)height, 0.1f, 10.0f);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 0, 1);
+  gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
 }
 
 void top_display(void)
@@ -99,6 +102,10 @@ void top_display(void)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLoadIdentity();
 
+  gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
+  glColor3f(0.4, 0.2, 0.2); 
+  glScalef(0.01, 0.01, 0.01);
+  renderObject(&test);
   // shadeing
   //models
   //textures
@@ -142,9 +149,9 @@ void idle()
 
 void init(void)
 {
-  //generateCylinder(&cylinder);
-  //generatePerFaceNormals(&cylinder);
-  //generatePerVertexNormals(true, &cylinder, 30);
+  generatePlane(&test,2);
+  generatePerFaceNormals(&test);
+  //generatePerVertexNormals(false, &test, 0);
 }
 
 int main(int argc, char** argv)

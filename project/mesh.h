@@ -100,7 +100,8 @@ void generatePerVertexNormals(bool weighted, Mesh *t, int cangle)
   std::vector<int> vi = t->m_vi;
   std::vector<Vec3f> nf = t->m_nf;
   std::vector<Vec3f> nv;
-  std::vector<int> v_t_membr[vi.size()]; // contains vertex -> triangle membership
+  int size = vi.size();
+  std::vector<int> v_t_membr[size]; // contains vertex -> triangle membership
   std::vector<double> v_t_a; // contains area of every triangle
   unsigned int i = 0;
   unsigned int j = 0;
@@ -108,6 +109,7 @@ void generatePerVertexNormals(bool weighted, Mesh *t, int cangle)
   // traverse every triangle, building membership + area
   for(i = 0; i < vi.size(); i += 3)
   {
+    std::cout << "I: " << i << std::endl;
     v_t_membr[vi[i]].push_back(j);
     v_t_membr[vi[i+1]].push_back(j);
     v_t_membr[vi[i+2]].push_back(j);

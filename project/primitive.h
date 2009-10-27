@@ -102,17 +102,17 @@ void generatePlane(Mesh *i, int type)
     {
       if(type == 0)
       {
-        i->m_v.push_back(Vec3f(x/100, y/100, 0));
+        i->m_v.push_back(Vec3f(x, y, 0));
         i->m_t.push_back(Vec3f(0,0,0));
       }
       if(type == 1)
       {
-        i->m_v.push_back(Vec3f(x/100,y/100,SumNoise(x,y)));
+        i->m_v.push_back(Vec3f(x,y,SumNoise(x,y)));
         i->m_t.push_back(Vec3f(0,0,0));
       }
       if(type == 2)
       {
-        i->m_v.push_back(Vec3f(x/100, y/100, MarbleNoise(x,y)));
+        i->m_v.push_back(Vec3f(x, y, MarbleNoise(x,y)));
         i->m_t.push_back(Vec3f(0,0,0));
       }
     }
