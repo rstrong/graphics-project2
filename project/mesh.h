@@ -23,12 +23,13 @@ void renderObject(Mesh *t)
   std::vector<Vec3f> v = t->m_v;
   std::vector<int> vi = t->m_vi;
   std::vector<Vec3f> tx = t->m_t;
+  std::vector<int> ti = t->m_ti;
   //colors etc
 
   glBegin(GL_TRIANGLES);
   for(unsigned int i = 0; i < vi.size(); i++)
   {
-    glTexCoord2f(tx[vi[i]].x, tx[vi[i]].y);
+    glTexCoord2f(tx[ti[i]].x, tx[ti[i]].y);
     glVertex3f(v[vi[i]].x, v[vi[i]].y, v[vi[i]].z);
   }
   glEnd();

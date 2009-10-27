@@ -7,7 +7,7 @@ GLuint TexObj;
 
 void load_textures(void)
 {
-  BitmapBits = LoadDIBitmap("./rock.bmp", &BitmapInfo);
+  BitmapBits = LoadDIBitmap("./dyingSun.bmp", &BitmapInfo);
 
   glGenTextures(1, &TexObj);
   glEnable(GL_TEXTURE_2D);
