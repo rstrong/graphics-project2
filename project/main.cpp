@@ -10,7 +10,7 @@
 #include <mathutil.h>
 #include <mesh.h>
 #include <primitive.h>
-
+#include <texture.h>
 
 float eyex = 0;
 float eyey = 0;
@@ -102,9 +102,15 @@ void top_display(void)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLoadIdentity();
 
+  load_textures(); 
+  glShadeModel(GL_SMOOTH);
+  glEnable(GL_DEPTH_TEST);
+
   gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
   glColor3f(0.4, 0.2, 0.2); 
   glScalef(0.01, 0.01, 0.01);
+
+  glBindTexture(GL_TEXTURE_2D, TexObj);
   renderObject(&test);
   // shadeing
   //models
@@ -149,6 +155,7 @@ void idle()
 
 void init(void)
 {
+  //generatePlane(&test,2);
   generatePlane(&test,2);
   generatePerFaceNormals(&test);
   //generatePerVertexNormals(false, &test, 0);
@@ -164,6 +171,7 @@ int main(int argc, char** argv)
   glutInitWindowPosition(50, 50);
   glutInit(&argc, argv);
 
+  
   window = glutCreateWindow("Project 2");
   glutReshapeFunc(main_reshape);
   glutDisplayFunc(main_display);
@@ -180,6 +188,7 @@ int main(int argc, char** argv)
   glutReshapeFunc(bottom_reshape);
   glutDisplayFunc(bottom_display);
   glutKeyboardFunc(main_keyboard);
+  
   glutMainLoop();
 
   return 0;
