@@ -57,9 +57,9 @@ void renderPerFaceNormals(Mesh *t)
   std::vector<Vec3f> n = t->m_nf;
 
   unsigned int i;
-  unsigned int c = 0;
+  int c = 0;
 
-  for(int i = 0; i < vi.size(); i+= 3)
+  for(i = 0; i < vi.size(); i+= 3)
   {
     float x = (((float)1/3))*(v[vi[i]].x + v[vi[i+1]].x + v[vi[i+2]].x);
     float y = (((float)1/3))*(v[vi[i]].y + v[vi[i+1]].y + v[vi[i+2]].y);
@@ -80,9 +80,8 @@ void renderPerVertexNormals(Mesh *t)
   std::vector<Vec3f> n = t->m_nv;
 
   unsigned int i;
-  unsigned int c = 0;
 
-  for(int i = 0; i < v.size(); i++)
+  for(i = 0; i < v.size(); i++)
   {
     double x = v[i].x;
     double y = v[i].y;
@@ -104,7 +103,7 @@ void generatePerVertexNormals(bool weighted, Mesh *t, int cangle)
   std::vector<int> v_t_membr[vi.size()]; // contains vertex -> triangle membership
   std::vector<double> v_t_a; // contains area of every triangle
   unsigned int i = 0;
-  int j = 0;
+  unsigned int j = 0;
 
   // traverse every triangle, building membership + area
   for(i = 0; i < vi.size(); i += 3)

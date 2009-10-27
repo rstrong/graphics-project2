@@ -4,7 +4,7 @@
 
 void generateCylinder(Mesh* i)
 {
-  int f;
+  unsigned int f;
   for(f = 0; f < 362; f+= 6)
   {
     i->m_v.push_back(Vec3f(sin(f*PI/180), cos(f*PI/180), 0));
