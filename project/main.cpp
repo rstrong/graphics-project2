@@ -108,7 +108,7 @@ void top_display(void)
 
   gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
   glColor3f(0.4, 0.2, 0.2); 
-  //glScalef(0.01, 0.01, 0.01);
+  glScalef(0.01, 0.01, 0.01);
 
   //glBindTexture(GL_TEXTURE_2D, TexObj);
   renderObject(&test);
@@ -156,7 +156,7 @@ void idle()
 void init(void)
 {
   //generatePlane(&test,2);
-  generateCube(&test);
+  generatePlane(&test,0);
   generatePerFaceNormals(&test);
   //generatePerVertexNormals(false, &test, 0);
 }
