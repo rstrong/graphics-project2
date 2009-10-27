@@ -23,6 +23,13 @@ void redisplay_all(void);
 int top_width, top_height, bottom_width, bottom_height;
 int window, top, bottom;
 #define GAP 15
+GLfloat AmbientLight[] = { 0.3f, 0.3f, 0.3f, 1.0f };
+GLfloat DiffuseLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat SpecularLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+GLfloat SpecRef[] = {0.7f, 0.7f, 0.7f, 1.0f};
+GLfloat LightPos[] = {-50.0f, 50.0f, 100.0f, 1.0f};
+GLubyte Shine = 128;
+
 
 Mesh test;
 
@@ -102,16 +109,27 @@ void top_display(void)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLoadIdentity();
 
-  load_textures(); 
+  //load_textures(); 
   glShadeModel(GL_SMOOTH);
   glEnable(GL_DEPTH_TEST);
+  glEnable(GL_LIGHTING);
+  glLightfv(GL_LIGHT0, GL_AMBIENT, AmbientLight);
+  glLightfv(GL_LIGHT0, GL_DIFFUSE, DiffuseLight);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, SpecularLight);
+  glEnable(GL_LIGHT0);
+  glEnable(GL_COLOR_MATERIAL);
+  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+  glMaterialfv(GL_FRONT, GL_SPECULAR, SpecRef);
+  glMateriali(GL_FRONT, GL_SHININESS, Shine);
+  glEnable(GL_NORMALIZE);
 
   gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
   glColor3f(0.4, 0.2, 0.2); 
-  glScalef(0.01, 0.01, 0.01);
-
+  //glScalef(0.01, 0.01, 0.01);
+    
+  glutSolidTeapot(1.0);
   //glBindTexture(GL_TEXTURE_2D, TexObj);
-  renderObject(&test);
+  //renderObject(&test);
   // shadeing
   //models
   //textures
@@ -156,9 +174,9 @@ void idle()
 void init(void)
 {
   //generatePlane(&test,2);
-  generatePlane(&test,0);
+  generateCube(&test);
   generatePerFaceNormals(&test);
-  //generatePerVertexNormals(false, &test, 0);
+  generatePerVertexNormals(false, &test, 0);
 }
 
 int main(int argc, char** argv)
