@@ -108,12 +108,13 @@ void generatePlane(Mesh *i, int type)
       }
       if(type == 1)
       {
-        i->m_v.push_back(Vec3f(x,SumNoise(x,y),y));
+        std::cout << "NOISE: " << SumNoise(x,y) << std::endl;
+        i->m_v.push_back(Vec3f(x,(-10 * SumNoise(x,y)),y));
         i->m_t.push_back(Vec3f(((float)(x+100)/200),((float)(y+100)/200),0));
       }
       if(type == 2)
       {
-        i->m_v.push_back(Vec3f(x, MarbleNoise(x,y),y));
+        i->m_v.push_back(Vec3f(x, (-10 *MarbleNoise(x,y)),y));
         i->m_t.push_back(Vec3f(((float)(x+100)/200),((float)(y+100)/200),0));
       }
     }

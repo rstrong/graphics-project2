@@ -23,6 +23,7 @@ void redisplay_all(void);
 int top_width, top_height, bottom_width, bottom_height;
 int window, top, bottom;
 #define GAP 15
+//lighting
 GLfloat AmbientLight[] = { 0.3f, 0.3f, 0.3f, 1.0f };
 GLfloat DiffuseLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SpecularLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -30,8 +31,53 @@ GLfloat SpecRef[] = {0.7f, 0.7f, 0.7f, 1.0f};
 GLfloat LightPos[] = {-50.0f, 50.0f, 100.0f, 1.0f};
 GLubyte Shine = 128;
 
+//controls
+int mouse_button;
+int mouse_x     = 0;
+int mouse_y     = 0;
+
+float scale   = 1.0;
+float x_angle   = 0.0;
+float y_angle   = 0.0;
+
 
 Mesh test;
+
+
+void motion(int x, int y)
+{
+  if(mouse_button == GLUT_LEFT_BUTTON)
+  {
+    // compute the angle (0..360) around x axis, and y-axis
+    y_angle += (float(x - mouse_x)/WIDTH)*360.0;
+    x_angle += (float(y - mouse_y)/HEIGHT)*360.0;
+
+  }
+
+  if(mouse_button == GLUT_RIGHT_BUTTON)
+  {
+    scale += (y - mouse_y) / 1000.0;
+
+    if(scale < 0.001)   scale = 0.001;
+    if(scale > 6.0)   scale = 6.0;
+  }
+
+  mouse_x = x;    // update current mouse position
+  mouse_y = y;
+  redisplay_all();
+}
+
+void mouse(int button, int state, int x, int y)
+{
+  // button -- GLUT_LEFT_BUTTON, GLUT_MIDDLE_BUTTON, or GLUT_RIGHT_BUTTON.
+  // state  -- GLUT_UP, GLUT_DOWN
+  mouse_x = x;
+  mouse_y = y;
+
+  mouse_button = button;
+  motion(x,y);
+}
+
 
 void main_reshape(int width, int height)
 {
@@ -109,7 +155,7 @@ void top_display(void)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLoadIdentity();
 
-  //load_textures(); 
+ // load_textures(); 
   glShadeModel(GL_SMOOTH);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_LIGHTING);
@@ -125,7 +171,10 @@ void top_display(void)
 
   gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
   glColor3f(0.4, 0.2, 0.2); 
-  //glScalef(0.01, 0.01, 0.01);
+  glScalef(scale, scale, scale);
+  glRotatef(x_angle, 1.0f, 0.0f, 0.0f);
+  glRotatef(y_angle, 0.0f, 1.0f, 0.0f);
+
     
   //glBindTexture(GL_TEXTURE_2D, TexObj);
   renderObject(&test);
@@ -169,7 +218,7 @@ void idle()
 void init(void)
 {
   //generatePlane(&test,2);
-  generatePlane(&test,0);
+  generatePlane(&test,2);
   generatePerFaceNormals(&test);
   generatePerVertexNormals(false, &test, 0);
 }
@@ -189,18 +238,26 @@ int main(int argc, char** argv)
   glutReshapeFunc(main_reshape);
   glutDisplayFunc(main_display);
   glutKeyboardFunc(main_keyboard);
+  glutMouseFunc(mouse);
+  glutMotionFunc(motion);
   glutIdleFunc(idle);
 
   top = glutCreateSubWindow(window, 1, 1, 10, 10);
   glutReshapeFunc(top_reshape);
   glutDisplayFunc(top_display);
-  glutIdleFunc(idle);
   glutKeyboardFunc(main_keyboard);
+  glutMouseFunc(mouse);
+  glutMotionFunc(motion);
+  glutIdleFunc(idle);
 
   bottom = glutCreateSubWindow(window, 1000, 1000, 50, 50);
   glutReshapeFunc(bottom_reshape);
   glutDisplayFunc(bottom_display);
   glutKeyboardFunc(main_keyboard);
+  glutMouseFunc(mouse);
+  glutMotionFunc(motion);
+  glutIdleFunc(idle);
+
   
   glutMainLoop();
 
