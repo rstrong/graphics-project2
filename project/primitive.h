@@ -97,40 +97,40 @@ void generatePlane(Mesh *i, int type)
 {
   int x,y;
 
-  for(x = -250; x < 251; x++)
+  for(x = -100; x < 101; x++)
   {
-    for(y = -250; y < 251; y++)
+    for(y = -100; y < 101; y++)
     {
       if(type == 0)
       {
         i->m_v.push_back(Vec3f(x, 0, y));
-        i->m_t.push_back(Vec3f(((float)(x+250)/500),((float)(y+250)/500),0));
+        i->m_t.push_back(Vec3f(((float)(x+100)/200),((float)(y+100)/200),0));
       }
       if(type == 1)
       {
         i->m_v.push_back(Vec3f(x,SumNoise(x,y),y));
-        i->m_t.push_back(Vec3f(((float)(x+250)/500),((float)(y+250)/500),0));
+        i->m_t.push_back(Vec3f(((float)(x+100)/200),((float)(y+100)/200),0));
       }
       if(type == 2)
       {
         i->m_v.push_back(Vec3f(x, MarbleNoise(x,y),y));
-        i->m_t.push_back(Vec3f(((float)(x+250)/500),((float)(y+250)/500),0));
+        i->m_t.push_back(Vec3f(((float)(x+100)/200),((float)(y+100)/200),0));
       }
     }
   }
 
 
-  for(x = 0; x < 499; x++)
+  for(x = 0; x < 199; x++)
   {
-    for(y = 0; y < 499; y++)
+    for(y = 0; y < 199; y++)
     {
-      i->m_vi.push_back(y + (x*500)); i->m_ti.push_back(y + (x*500));
-      i->m_vi.push_back(y+ (x*500) + 500); i->m_ti.push_back(y+ (x*500) + 500);
-      i->m_vi.push_back(y + (x*500) + 501); i->m_ti.push_back(y + (x*500) + 501);
+      i->m_vi.push_back(y + (x*200)); i->m_ti.push_back(y + (x*200));
+      i->m_vi.push_back(y+ (x*200) + 200); i->m_ti.push_back(y+ (x*200) + 200);
+      i->m_vi.push_back(y + (x*200) + 201); i->m_ti.push_back(y + (x*200) + 201);
 
-      i->m_vi.push_back(y + (x*500) + 1); i->m_ti.push_back(y + (x*500) + 1);
-      i->m_vi.push_back(y + (x*500) + 501); i->m_ti.push_back(y + (x*500) + 501);
-      i->m_vi.push_back(y + (x*500) + 2); i->m_ti.push_back(y + (x*500) + 2);
+      i->m_vi.push_back(y + (x*200) + 1); i->m_ti.push_back(y + (x*200) + 1);
+      i->m_vi.push_back(y + (x*200) + 201); i->m_ti.push_back(y + (x*200) + 201);
+      i->m_vi.push_back(y + (x*200) + 2); i->m_ti.push_back(y + (x*200) + 2);
     }
   }
 }

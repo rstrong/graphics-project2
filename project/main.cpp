@@ -127,13 +127,8 @@ void top_display(void)
   glColor3f(0.4, 0.2, 0.2); 
   //glScalef(0.01, 0.01, 0.01);
     
-  glutSolidTeapot(1.0);
   //glBindTexture(GL_TEXTURE_2D, TexObj);
-  //renderObject(&test);
-  // shadeing
-  //models
-  //textures
-  //etc
+  renderObject(&test);
   glutSwapBuffers();
 }
 
@@ -174,7 +169,7 @@ void idle()
 void init(void)
 {
   //generatePlane(&test,2);
-  generateCube(&test);
+  generatePlane(&test,0);
   generatePerFaceNormals(&test);
   generatePerVertexNormals(false, &test, 0);
 }
