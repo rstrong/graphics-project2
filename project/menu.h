@@ -1,6 +1,5 @@
 /* menu.h */
 
-
 void top_menu(int value)
 {
   main_keyboard((unsigned char)value, 0, 0);
@@ -28,7 +27,8 @@ void change_plane(int option)
     PLANE_TYPE = 2;
   }
   std::cout << "Plane updated to: " << PLANE_TYPE << std::endl;
-
+  init_ground(PLANE_TYPE);
+  redisplay_all();
   // redisplay? 
 }
 
@@ -47,6 +47,7 @@ void change_texture(int option)
     TEXTURE_OPTION = 2;
   }
   std::cout << "Texture Option updated to: " << TEXTURE_OPTION << std::endl;
+  redisplay_all();
 }
 
 void change_mini(int option)
@@ -60,6 +61,7 @@ void change_mini(int option)
     MINI_OPTION = 1;
   }
   std::cout << "Minification updated to: " << MINI_OPTION << std::endl;
+  redisplay_all();
 }
 
 void change_mag(int option)
@@ -73,6 +75,7 @@ void change_mag(int option)
     MAG_OPTION = 1;
   }
   std::cout << "Magnification updated to: " << MAG_OPTION << std::endl;
+  redisplay_all();
 }
 
 void change_pfn(int option)
@@ -86,6 +89,7 @@ void change_pfn(int option)
     VIS_N_FACE = 1;
   }
   std::cout << "Visual Per Face Noramls updated to: " << VIS_N_FACE << std::endl;
+  redisplay_all();
 }
 
 void change_pvn(int option)
@@ -99,6 +103,7 @@ void change_pvn(int option)
     VIS_N_VER = 1;
   }
   std::cout << "Visual Per Vertex Noramls updated to: " << VIS_N_VER << std::endl;
+  redisplay_all();
 }
 
 void change_cangle(int option)
@@ -120,6 +125,7 @@ void change_cangle(int option)
     C_ANGLE = 35;
   }
   std::cout << "crease angle updated to: " << C_ANGLE << std::endl;
+  redisplay_all();
 
 }
 
@@ -138,6 +144,7 @@ void change_mat(int option)
     MATERIAL_OPTION = 2;
   }
   std::cout << "material updated to: " << MATERIAL_OPTION << std::endl;
+  redisplay_all();
 }
 
 void change_shade(int option)
@@ -151,6 +158,7 @@ void change_shade(int option)
     SHADING_OPTION = 1;
   }
   std::cout << "shading updated to: " << SHADING_OPTION << std::endl;
+  redisplay_all();
 }
 
 void change_camera(int option)
@@ -177,6 +185,7 @@ void change_camera(int option)
     CAMERA_OPTION = 4;
   }
   std::cout << "camera updated to: " << CAMERA_OPTION << std::endl;
+  redisplay_all();
 }
 void setup_menus(void)
 {

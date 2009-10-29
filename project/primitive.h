@@ -108,7 +108,6 @@ void generatePlane(Mesh *i, int type)
       }
       if(type == 1)
       {
-        std::cout << "NOISE: " << SumNoise(x,y) << std::endl;
         i->m_v.push_back(Vec3f(x,(-10 * SumNoise(x,y)),y));
         i->m_t.push_back(Vec3f(((float)(x+100)/200),((float)(y+100)/200),0));
       }

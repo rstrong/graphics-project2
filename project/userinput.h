@@ -8,17 +8,19 @@ void motion(int x, int y)
 
   }
 
-  if(mouse_button == GLUT_RIGHT_BUTTON)
+  if(mouse_button == GLUT_MIDDLE_BUTTON)
   {
     scale += (y - mouse_y) / 1000.0;
-
+    
     if(scale < 0.001)   scale = 0.001;
     if(scale > 6.0)   scale = 6.0;
+    std::cout << "new scale: " << scale << std::endl;
   }
 
   mouse_x = x;    // update current mouse position
   mouse_y = y;
   redisplay_all();
+  std::cout << "x: " << x << " y: " << y << std::endl;
 }
 
 void mouse(int button, int state, int x, int y)

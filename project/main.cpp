@@ -9,20 +9,19 @@
 // The beginnings of ours...
 #include <main.h>
 #include <userinput.h>
-#include <menu.h>
 #include <mathutil.h>
 #include <mesh.h>
 #include <primitive.h>
 #include <texture.h>
-
-
-Mesh test;
+#include <scene.h>
+#include <menu.h>
 
 
 void main_reshape(int width, int height)
 {
   WIDTH = width;
   HEIGHT = height;
+  glClear(GL_COLOR_BUFFER_BIT);
   glViewport(0, 0, width, height);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
@@ -45,6 +44,7 @@ void main_reshape(int width, int height)
 
 void main_display()
 {
+
   glClearColor(0.8f, 0.8f, 0.8f, 0.0);
   glClear(GL_COLOR_BUFFER_BIT);
   glutSwapBuffers();
@@ -65,7 +65,7 @@ void top_display(void)
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLoadIdentity();
-
+  glColor3f(1.0, 0.0, 0.0);
  // load_textures(); 
   glShadeModel(GL_SMOOTH);
   glEnable(GL_DEPTH_TEST);
@@ -86,9 +86,8 @@ void top_display(void)
   glRotatef(x_angle, 1.0f, 0.0f, 0.0f);
   glRotatef(y_angle, 0.0f, 1.0f, 0.0f);
 
-    
-  //glBindTexture(GL_TEXTURE_2D, TexObj);
-  renderObject(&test);
+  ground(); 
+
   glutSwapBuffers();
 }
 
@@ -100,7 +99,6 @@ void bottom_reshape(int width, int height)
   gluOrtho2D(0, width, height, 0);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-  glClearColor(0.0, 0.0, 0.0, 0.0);
 }
 
 void bottom_display(void)
@@ -128,10 +126,11 @@ void idle()
 
 void init(void)
 {
+  init_ground(PLANE_TYPE);
   //generatePlane(&test,2);
-  generatePlane(&test,2);
-  generatePerFaceNormals(&test);
-  generatePerVertexNormals(false, &test, 0);
+  //generatePlane(&test,2);
+  //generatePerFaceNormals(&test);
+  //generatePerVertexNormals(false, &test, 0);
 }
 
 int main(int argc, char** argv)
@@ -151,7 +150,6 @@ int main(int argc, char** argv)
   glutKeyboardFunc(main_keyboard);
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
-  glutIdleFunc(idle);
 
   top = glutCreateSubWindow(window, 1, 1, 10, 10);
   glutReshapeFunc(top_reshape);
@@ -159,7 +157,7 @@ int main(int argc, char** argv)
   glutKeyboardFunc(main_keyboard);
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
-  glutIdleFunc(idle);
+  glutIdleFunc(redisplay_all);
   setup_menus();
 
   bottom = glutCreateSubWindow(window, 1000, 1000, 50, 50);
@@ -168,7 +166,6 @@ int main(int argc, char** argv)
   glutKeyboardFunc(main_keyboard);
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
-  glutIdleFunc(idle);
 
   
   glutMainLoop();

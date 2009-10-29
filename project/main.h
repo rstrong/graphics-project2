@@ -51,7 +51,7 @@ int MAG_OPTION = 0;
 // display face normals? 0 -> no, 1 -> yes
 int VIS_N_FACE = 0;
 
-// display vertex nomals? 0 -> no, 1 -> yes
+// display vertex nomals? 0 -> no, 1 -> standard, 2 -> weight 
 int VIS_N_VER = 0;
 
 // crease angle, can be 0 (off), 15, 25, 35
