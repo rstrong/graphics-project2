@@ -18,6 +18,18 @@ struct Mesh
   std::vector<Vec3f> m_nv; // per vertex normal
 };
 
+void clearMesh(Mesh *t)
+{
+  t->m_v.clear();
+  t->m_c.clear();
+  t->m_vi.clear();
+  t->m_ci.clear();
+  t->m_t.clear();
+  t->m_ti.clear();
+  t->m_nf.clear();
+  t->m_nv.clear();
+}
+
 void renderObject(Mesh *t)
 {
   std::vector<Vec3f> v = t->m_v;
