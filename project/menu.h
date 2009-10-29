@@ -180,10 +180,6 @@ void change_camera(int option)
   {
     CAMERA_OPTION = 3;
   }
-  if(option == 4)
-  {
-    CAMERA_OPTION = 4;
-  }
   std::cout << "camera updated to: " << CAMERA_OPTION << std::endl;
   redisplay_all();
 }
@@ -222,11 +218,10 @@ void setup_menus(void)
   glutAddMenuEntry("Flat", 0);
   glutAddMenuEntry("Smooth", 1);
   int sub_camera = glutCreateMenu(change_camera);
-  glutAddMenuEntry("Top Down", 0);
-  glutAddMenuEntry("45 Degree", 1);
-  glutAddMenuEntry("Light Source", 2);
-  glutAddMenuEntry("Navigation Camera", 3);
-  glutAddMenuEntry("First Person", 4);
+  glutAddMenuEntry("45 Degree", 0);
+  glutAddMenuEntry("Light Source", 1);
+  glutAddMenuEntry("Navigation Camera", 2);
+  glutAddMenuEntry("First Person", 3);
 
   glutCreateMenu(top_menu);
   glutAddSubMenu("Plane", sub_plane);

@@ -56,10 +56,66 @@ void main_keyboard(unsigned char key, int x, int y)
     case 'm' :
       eyez -= 0.1;
       break;
+    case 'e' : 
+      carx += 1;
+      break;
+    case 'E' :
+      carx -= 1;
+      break;
+    case 'r' : 
+      cary += 1;
+      break;
+    case 'R' : 
+      cary -= 1;
+      break;
+    case 't':
+      carz += 1;
+      break;
+    case 'T':
+      carz -= 1;
+      break;
     default:
       break;
   }
   std::cout << "EYEZ: " << eyex << " " << eyey << " " << eyez << std::endl;
+  std::cout << "CAR: " << carx << " " << cary << " " << carz << std::endl;
   redisplay_all();
 }
 
+void special_keyboard(int key, int x, int y)
+{
+  switch(key)
+  {
+  case GLUT_KEY_LEFT:
+    if(CAMERA_OPTION == 1)
+    {
+      light_angle -= 3;  
+    }
+    break;
+  case GLUT_KEY_RIGHT:
+    if(CAMERA_OPTION == 1)
+    {
+      light_angle += 3;
+    }
+    break;
+  case GLUT_KEY_UP:
+    break;
+  case GLUT_KEY_DOWN:
+    break;
+  default:
+    break;
+  }
+
+  if(CAMERA_OPTION == 1)
+  {
+    if(light_angle == 360 || light_angle == -360)
+    {
+      light_angle = 0;
+    }
+    LightPos[0] = 50*sin((float)light_angle*PI/180);
+    LightPos[2] = 50*cos((float)light_angle*PI/180);
+    std::cout << "New Light Pos: " << LightPos[0] << " " << LightPos[1] << " " << LightPos[2] << std::endl;
+    top_display();
+  }
+  redisplay_all();
+}

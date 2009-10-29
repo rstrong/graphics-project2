@@ -4,9 +4,10 @@ main.h - contains slew of globals
 
 
 //camera
-float eyex = 0;
-float eyey = 0;
+float eyex = 1;
+float eyey = 2;
 float eyez = 0;
+int light_angle = 0;
 //overall size
 int WIDTH = 1024;
 int HEIGHT = 768;
@@ -19,16 +20,23 @@ GLfloat AmbientLight[] = { 0.3f, 0.3f, 0.3f, 1.0f };
 GLfloat DiffuseLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SpecularLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SpecRef[] = {0.7f, 0.7f, 0.7f, 1.0f};
-GLfloat LightPos[] = {-50.0f, 50.0f, 100.0f, 1.0f};
+GLfloat LightPos[] = {0.0f, 50.0f, 50.0f, 1.0f};
 GLubyte Shine = 128;
 //controls
 int mouse_button;
 int mouse_x     = 0;
 int mouse_y     = 0;
 // overall viewing variables
-float scale   = 1.0;
+float scale  = 0.01;
 float x_angle   = 0.0;
 float y_angle   = 0.0;
+
+
+// car xyz
+float carx = 0;
+float cary = 0;
+float carz = 0;
+
 
 // Specific control variables
 //0 -> flat plane
@@ -66,12 +74,11 @@ int MATERIAL_OPTION = 2;
 // 1 -> smooth
 int SHADING_OPTION = 0;
 
-// 0 -> top down
-// 1 -> 45 degree
-// 2 -> light source
-// 3 -> navigation camera
-// 4 -> first person
+// 0 -> 45 degree
+// 1 -> light source
+// 2 -> navigation camera
+// 3 -> first person
 int CAMERA_OPTION = 0;
 
 void redisplay_all(void);
-
+void top_display(void);

@@ -26,8 +26,18 @@ void init_ground(int type)
 
 void ground(void)
 {
-  // glscale
-  // glrotate
+  glPushMatrix();
+  //glScalef(0.01, 0.01, 0.01);
   renderObject(&plane);
-  
+
+  glPopMatrix();
+}
+
+void car(void)
+{
+  glPushMatrix();
+  glColor3f(0.3, 0.4, 0.5);
+  glTranslatef(carx, cary, carz);
+  glutSolidSphere(4,10,10);
+  glPopMatrix();
 }

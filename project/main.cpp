@@ -7,9 +7,9 @@
 #include <GL/glut.h>
 
 // The beginnings of ours...
+#include <mathutil.h>
 #include <main.h>
 #include <userinput.h>
-#include <mathutil.h>
 #include <mesh.h>
 #include <primitive.h>
 #include <texture.h>
@@ -73,6 +73,7 @@ void top_display(void)
   glLightfv(GL_LIGHT0, GL_AMBIENT, AmbientLight);
   glLightfv(GL_LIGHT0, GL_DIFFUSE, DiffuseLight);
   glLightfv(GL_LIGHT0, GL_SPECULAR, SpecularLight);
+  glLightfv(GL_LIGHT0, GL_POSITION, LightPos);
   glEnable(GL_LIGHT0);
   glEnable(GL_COLOR_MATERIAL);
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
@@ -87,7 +88,7 @@ void top_display(void)
   glRotatef(y_angle, 0.0f, 1.0f, 0.0f);
 
   ground(); 
-
+  car();
   glutSwapBuffers();
 }
 
@@ -148,6 +149,7 @@ int main(int argc, char** argv)
   glutReshapeFunc(main_reshape);
   glutDisplayFunc(main_display);
   glutKeyboardFunc(main_keyboard);
+  glutSpecialFunc(special_keyboard);
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
 
@@ -155,6 +157,7 @@ int main(int argc, char** argv)
   glutReshapeFunc(top_reshape);
   glutDisplayFunc(top_display);
   glutKeyboardFunc(main_keyboard);
+  glutSpecialFunc(special_keyboard);
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
   glutIdleFunc(redisplay_all);
@@ -164,6 +167,7 @@ int main(int argc, char** argv)
   glutReshapeFunc(bottom_reshape);
   glutDisplayFunc(bottom_display);
   glutKeyboardFunc(main_keyboard);
+  glutSpecialFunc(special_keyboard);
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
 
