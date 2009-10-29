@@ -38,6 +38,18 @@ void main_keyboard(unsigned char key, int x, int y)
 {
   switch(key)
   {
+    case 'a' :
+      if(CAMERA_OPTION == 2)
+      {
+        eye_mag += 0.05;
+      }
+      break;
+    case 's' : 
+      if(CAMERA_OPTION == 2)
+      {
+        eye_mag -= 0.05;
+      }
+      break;
     case 'u' :
       eyex += 0.1;
       break;
@@ -77,6 +89,19 @@ void main_keyboard(unsigned char key, int x, int y)
     default:
       break;
   }
+
+  if(CAMERA_OPTION == 2)
+  {
+    // CHANGE THIS IDEA TO A VECTOR
+    if(eye_mag < 0.05)
+    {
+      eye_mag = 0.05;
+    }
+    eyex = eye_mag*cos((float)eye_angle*PI/180);
+    eyez = eye_mag*sin((float)eye_angle*PI/180);
+    std::cout << "New Eyes: " << eyex << " " << eyey << " " << eyez << std::endl;
+  }
+  
   std::cout << "EYEZ: " << eyex << " " << eyey << " " << eyez << std::endl;
   std::cout << "CAR: " << carx << " " << cary << " " << carz << std::endl;
   redisplay_all();
@@ -91,16 +116,32 @@ void special_keyboard(int key, int x, int y)
     {
       light_angle -= 3;  
     }
+    if(CAMERA_OPTION == 2)
+    {
+      eye_angle -= 3;
+    }
     break;
   case GLUT_KEY_RIGHT:
     if(CAMERA_OPTION == 1)
     {
       light_angle += 3;
     }
+    if(CAMERA_OPTION == 2)
+    {
+      eye_angle += 3;
+    }
     break;
   case GLUT_KEY_UP:
+    if(CAMERA_OPTION == 2)
+    {
+      eyey += 0.1;
+    }
     break;
   case GLUT_KEY_DOWN:
+    if(CAMERA_OPTION == 2)
+    {
+      eyey -= 0.1;
+    }
     break;
   default:
     break;
@@ -115,6 +156,17 @@ void special_keyboard(int key, int x, int y)
     LightPos[0] = 50*sin((float)light_angle*PI/180);
     LightPos[2] = 50*cos((float)light_angle*PI/180);
     std::cout << "New Light Pos: " << LightPos[0] << " " << LightPos[1] << " " << LightPos[2] << std::endl;
+    top_display();
+  }
+  if(CAMERA_OPTION == 2)
+  {
+    if(eye_angle == 360 || eye_angle == -360)
+    {
+      eye_angle = 0;
+    }
+    eyex = eye_mag*cos((float)eye_angle*PI/180);
+    eyez = eye_mag*sin((float)eye_angle*PI/180);
+    std::cout << "New Eyes: " << eyex << " " << eyey << " " << eyez << std::endl;
     top_display();
   }
   redisplay_all();

@@ -7,6 +7,8 @@ main.h - contains slew of globals
 float eyex = 1;
 float eyey = 2;
 float eyez = 0;
+float eye_mag = 1;
+float eye_angle = 0; 
 int light_angle = 0;
 //overall size
 int WIDTH = 1024;
