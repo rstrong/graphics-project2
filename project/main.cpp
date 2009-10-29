@@ -9,6 +9,7 @@
 // The beginnings of ours...
 #include <main.h>
 #include <userinput.h>
+#include <menu.h>
 #include <mathutil.h>
 #include <mesh.h>
 #include <primitive.h>
@@ -159,6 +160,7 @@ int main(int argc, char** argv)
   glutMouseFunc(mouse);
   glutMotionFunc(motion);
   glutIdleFunc(idle);
+  setup_menus();
 
   bottom = glutCreateSubWindow(window, 1000, 1000, 50, 50);
   glutReshapeFunc(bottom_reshape);
