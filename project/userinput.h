@@ -41,13 +41,19 @@ void main_keyboard(unsigned char key, int x, int y)
     case 'a' :
       if(CAMERA_OPTION == 2)
       {
-        eye_mag += 0.05;
+        eye_mag *= 1.1;
+        eyex *= 1.1;
+        eyey *= 1.1;
+        eyez *= 1.1;
       }
       break;
     case 's' : 
       if(CAMERA_OPTION == 2)
       {
-        eye_mag -= 0.05;
+        eye_mag *= 0.9;
+        eyex *= 0.9;
+        eyey *= 0.9;
+        eyez *= 0.9;
       }
       break;
     case 'u' :
@@ -90,18 +96,6 @@ void main_keyboard(unsigned char key, int x, int y)
       break;
   }
 
-  if(CAMERA_OPTION == 2)
-  {
-    // CHANGE THIS IDEA TO A VECTOR
-    if(eye_mag < 0.05)
-    {
-      eye_mag = 0.05;
-    }
-    eyex = eye_mag*cos((float)eye_angle*PI/180);
-    eyez = eye_mag*sin((float)eye_angle*PI/180);
-    std::cout << "New Eyes: " << eyex << " " << eyey << " " << eyez << std::endl;
-  }
-  
   std::cout << "EYEZ: " << eyex << " " << eyey << " " << eyez << std::endl;
   std::cout << "CAR: " << carx << " " << cary << " " << carz << std::endl;
   redisplay_all();
