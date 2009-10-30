@@ -106,6 +106,10 @@ void special_keyboard(int key, int x, int y)
   switch(key)
   {
   case GLUT_KEY_LEFT:
+    if(CAMERA_OPTION == 0)
+    {
+      car_angle += 5;
+    }
     if(CAMERA_OPTION == 1)
     {
       light_angle -= 3;  
@@ -116,6 +120,10 @@ void special_keyboard(int key, int x, int y)
     }
     break;
   case GLUT_KEY_RIGHT:
+    if(CAMERA_OPTION == 0)
+    {
+      car_angle -= 5;
+    }
     if(CAMERA_OPTION == 1)
     {
       light_angle += 3;
@@ -126,12 +134,20 @@ void special_keyboard(int key, int x, int y)
     }
     break;
   case GLUT_KEY_UP:
+    if(CAMERA_OPTION == 0)
+    {
+      car_speed += 0.01;
+    }
     if(CAMERA_OPTION == 2)
     {
       eyey += 0.1;
     }
     break;
   case GLUT_KEY_DOWN:
+    if(CAMERA_OPTION == 0)
+    {
+      car_speed -= 0.01;
+    }
     if(CAMERA_OPTION == 2)
     {
       eyey -= 0.1;
@@ -140,15 +156,25 @@ void special_keyboard(int key, int x, int y)
   default:
     break;
   }
-
+  if(CAMERA_OPTION == 0)
+  {
+    if(car_angle == 360 || car_angle == -360)
+    {
+      car_angle = 0;
+    }
+    steer.setValue((float)(car_speed * cos((-car_angle)*PI/180)), 0.0f, (float)(car_speed * sin((-car_angle)*PI/180)));
+    move_car(); 
+    std::cout << "New Car Position: " << carx << " " << cary << " " << carz << std::endl;
+    top_display();
+  }
   if(CAMERA_OPTION == 1)
   {
     if(light_angle == 360 || light_angle == -360)
     {
       light_angle = 0;
     }
-    LightPos[0] = 50*sin((float)light_angle*PI/180);
-    LightPos[2] = 50*cos((float)light_angle*PI/180);
+    LightPos[0] = 25*sin((float)light_angle*PI/180);
+    LightPos[2] = 25*cos((float)light_angle*PI/180);
     std::cout << "New Light Pos: " << LightPos[0] << " " << LightPos[1] << " " << LightPos[2] << std::endl;
     top_display();
   }

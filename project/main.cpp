@@ -9,13 +9,12 @@
 // The beginnings of ours...
 #include <mathutil.h>
 #include <main.h>
-#include <userinput.h>
 #include <mesh.h>
 #include <primitive.h>
 #include <texture.h>
 #include <scene.h>
+#include <userinput.h>
 #include <menu.h>
-
 
 void main_reshape(int width, int height)
 {
@@ -128,6 +127,7 @@ void idle()
 void init(void)
 {
   init_ground(PLANE_TYPE);
+  steer.setValue(0.0, 0.0, 0.0); // steering
   //generatePlane(&test,2);
   //generatePlane(&test,2);
   //generatePerFaceNormals(&test);

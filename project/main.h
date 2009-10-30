@@ -22,7 +22,7 @@ GLfloat AmbientLight[] = { 0.3f, 0.3f, 0.3f, 1.0f };
 GLfloat DiffuseLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SpecularLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SpecRef[] = {0.7f, 0.7f, 0.7f, 1.0f};
-GLfloat LightPos[] = {0.0f, 50.0f, 50.0f, 1.0f};
+GLfloat LightPos[] = {0.0f, 25.0f, 25.0f, 1.0f};
 GLubyte Shine = 128;
 //controls
 int mouse_button;
@@ -35,10 +35,12 @@ float y_angle   = 0.0;
 
 
 // car xyz
-float carx = 0;
-float cary = 0;
-float carz = 0;
-
+float carx = -75;
+float cary = 1;
+float carz = 75;
+Vec3f steer;
+float car_speed = 0;
+float car_angle = 0;
 
 // Specific control variables
 //0 -> flat plane

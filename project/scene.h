@@ -2,6 +2,7 @@
 Mesh plane;
 int cur_plane = -1;
 
+void move_car(void);
 
 void init_ground(int type)
 {
@@ -38,6 +39,14 @@ void car(void)
   glPushMatrix();
   glColor3f(0.3, 0.4, 0.5);
   glTranslatef(carx, cary, carz);
-  glutSolidSphere(4,10,10);
+  glRotated(car_angle,0.0, 1.0, 0.0);
+  glutSolidTeapot(4.0);
   glPopMatrix();
+  move_car();
+}
+
+void move_car(void)
+{
+  carx += steer.x;
+  carz += steer.z;
 }
