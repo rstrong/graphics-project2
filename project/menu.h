@@ -222,7 +222,7 @@ void setup_menus(void)
   glutAddMenuEntry("Flat", 0);
   glutAddMenuEntry("Smooth", 1);
   int sub_camera = glutCreateMenu(change_camera);
-  glutAddMenuEntry("45 Degree", 0);
+  glutAddMenuEntry("Overview", 0);
   glutAddMenuEntry("Light Source", 1);
   glutAddMenuEntry("Navigation Camera", 2);
   glutAddMenuEntry("First Person", 3);
