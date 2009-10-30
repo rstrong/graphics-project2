@@ -167,6 +167,10 @@ void change_camera(int option)
   if(option == 0)
   {
     CAMERA_OPTION = 0;
+    eyex = 1;
+    eyey = 2;
+    eyez = 0;
+    eye_mag = 1;
   }
   if(option == 1)
   {
