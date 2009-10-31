@@ -27,6 +27,10 @@ void init_ground(int type)
 
 void ground(void)
 {
+  if(TEXTURE_OPTION > 0)
+  {
+    load_grass();
+  }
   glPushMatrix();
   //glScalef(0.01, 0.01, 0.01);
   renderObject(&plane);

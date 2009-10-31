@@ -76,7 +76,19 @@ void top_display(void)
   glEnable(GL_LIGHT0);
   glEnable(GL_COLOR_MATERIAL);
   glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-  glMaterialfv(GL_FRONT, GL_SPECULAR, SpecRef);
+  if(MATERIAL_OPTION == 0)
+  {
+    GLfloat mat_diffuse[] = { 1.0, 1.0, 0.0, 0.0 };
+    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse); 
+  }
+  if(MATERIAL_OPTION == 1)
+  {
+    glMaterialfv(GL_FRONT, GL_SPECULAR, SpecRef);
+  }
+  if(MATERIAL_OPTION == 2)
+  {
+    glMaterialfv(GL_FRONT, GL_SPECULAR, SpecRef);
+  }
   glMateriali(GL_FRONT, GL_SHININESS, Shine);
   glEnable(GL_NORMALIZE);
 
