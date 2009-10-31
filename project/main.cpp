@@ -54,7 +54,7 @@ void top_reshape(int width, int height)
   glViewport(0, 0, width, height);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(45.0f, (float)width / (float)height, 0.1f, 10.0f);
+  gluPerspective(45.0f, (float)width / (float)height, 0.1f, 100.0f);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
@@ -80,7 +80,7 @@ void top_display(void)
   glMateriali(GL_FRONT, GL_SHININESS, Shine);
   glEnable(GL_NORMALIZE);
 
-  gluLookAt(eyex, eyey, eyez, 0, 0, 0, 0, 1, 0);
+  gluLookAt(eyex, eyey, eyez, lookx, looky, lookz, 0, 1, 0);
   glColor3f(0.4, 0.2, 0.2); 
   glScalef(scale, scale, scale);
   glRotatef(x_angle, 1.0f, 0.0f, 0.0f);

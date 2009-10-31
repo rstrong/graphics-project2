@@ -10,6 +10,9 @@ float eyez = 0;
 float eye_mag = 1;
 float eye_angle = 0; 
 int light_angle = 0;
+float lookx = 0;
+float looky = 0;
+float lookz = 0;
 //overall size
 int WIDTH = 1024;
 int HEIGHT = 768;

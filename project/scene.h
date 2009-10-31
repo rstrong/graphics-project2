@@ -36,12 +36,15 @@ void ground(void)
 
 void car(void)
 {
-  glPushMatrix();
-  glColor3f(0.3, 0.4, 0.5);
-  glTranslatef(carx, cary, carz);
-  glRotated(car_angle,0.0, 1.0, 0.0);
-  glutSolidTeapot(4.0);
-  glPopMatrix();
+  if(CAMERA_OPTION != 3)
+  {
+    glPushMatrix();
+    glColor3f(0.3, 0.4, 0.5);
+    glTranslatef(carx, cary, carz);
+    glRotated(car_angle,0.0, 1.0, 0.0);
+    glutSolidTeapot(4.0);
+    glPopMatrix();
+  }
   move_car();
 }
 
