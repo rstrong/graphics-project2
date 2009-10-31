@@ -99,6 +99,8 @@ void top_display(void)
   glRotatef(y_angle, 0.0f, 1.0f, 0.0f);
 
   ground(); 
+  columns();
+  walls();
   car();
   glutSwapBuffers();
 }
@@ -139,6 +141,8 @@ void idle()
 void init(void)
 {
   init_ground(PLANE_TYPE);
+  init_cylinder();
+  init_cube();
   steer.setValue(0.0, 0.0, 0.0); // steering
   //generatePlane(&test,2);
   //generatePlane(&test,2);
