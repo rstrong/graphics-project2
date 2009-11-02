@@ -44,6 +44,10 @@ void init_cube(void)
 
 void columns(void)
 {
+  if(TEXTURE_OPTION > 0)
+  {
+    load_beech();
+  }
   glPushMatrix();
   glColor3f(0.3, 0.4, 0.5);
   glScalef(4.0, 12.0, 4.0);
@@ -85,6 +89,10 @@ void columns(void)
 
 void walls(void)
 {
+  if(TEXTURE_OPTION > 0)
+  {
+    load_stone();
+  }
   glPushMatrix();
   glColor3f(0.5,0.4,0.3);
  
