@@ -3,7 +3,6 @@
 
 bool isLessCrease(Vec3f, Vec3f, int);
 
-
 struct Mesh
 { 
   std::vector<Vec3f> m_v; //vertex
@@ -17,6 +16,9 @@ struct Mesh
   std::vector<Vec3f> m_nf; // per face normal
   std::vector<Vec3f> m_nv; // per vertex normal
 };
+
+void renderPerVertexNormals(Mesh *);
+void renderPerFaceNormals(Mesh *);
 
 void clearMesh(Mesh *t)
 {
@@ -46,6 +48,14 @@ void renderObject(Mesh *t)
     glNormal3f(nv[vi[i]].x, v[vi[i]].y, v[vi[i]].z);
   }
   glEnd();
+  if(VIS_N_FACE == 1)
+  {
+    renderPerFaceNormals(t);
+  }
+  if(VIS_N_VER == 1)
+  {
+    renderPerVertexNormals(t);
+  }
 }
 
 void generatePerFaceNormals(Mesh *t)

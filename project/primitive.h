@@ -5,7 +5,8 @@
 void generateCylinder(Mesh* i)
 {
   unsigned int f;
-  for(f = 0; f < 362; f+= 6)
+  int size;
+  for(f = 0; f < 362; f+= 12)
   {
     i->m_v.push_back(Vec3f(sin(f*PI/180), 0, cos(f*PI/180)));
     i->m_t.push_back(Vec3f(((float)f/362), -0.5, 0)); 
@@ -17,27 +18,29 @@ void generateCylinder(Mesh* i)
   i->m_t.push_back(Vec3f(2, 2, 2));
   i->m_v.push_back(Vec3f(0,2,0));
   i->m_t.push_back(Vec3f(2, 2, 2));
- // TODO Need to fix order of texture coordinates
+  size = i->m_v.size();
   for(f = 0; f < (i->m_v.size() - 2) - 2; f += 2)
   {
+
     i->m_vi.push_back(f+1); i->m_ti.push_back(f+1);
-    i->m_vi.push_back(f+2); i->m_ti.push_back(f+2);
     i->m_vi.push_back(f); i->m_ti.push_back(f+2);
+    i->m_vi.push_back(f+2); i->m_ti.push_back(f+2);
     
     // side of i triangle two
+
     i->m_vi.push_back(f+1); i->m_ti.push_back(f+1);
-    i->m_vi.push_back(f+3); i->m_ti.push_back(f+3);
     i->m_vi.push_back(f+2); i->m_ti.push_back(f+2);
+    i->m_vi.push_back(f+3); i->m_ti.push_back(f+3);
 
     // top of i
     i->m_vi.push_back(f+1); i->m_ti.push_back(f+1);
-    i->m_vi.push_back(i->m_v.size()-1); i->m_ti.push_back(i->m_v.size()-1);
     i->m_vi.push_back(f+3); i->m_ti.push_back(f+3);
+    i->m_vi.push_back(i->m_v.size()-1); i->m_ti.push_back(i->m_v.size()-1);
     
-    //bottom of i
-    i->m_vi.push_back(f + 2); i->m_ti.push_back(f+2);
-    i->m_vi.push_back(i->m_v.size()); i->m_ti.push_back(i->m_v.size());
+   //bottom of i
     i->m_vi.push_back(f); i->m_ti.push_back(f);
+    i->m_vi.push_back(f + 2); i->m_ti.push_back(f+2);
+    i->m_vi.push_back(size); i->m_ti.push_back(size);
   }
   
 }
