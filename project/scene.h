@@ -69,41 +69,39 @@ void columns(void)
     load_beech();
   }
   glPushMatrix();
-  glColor3f(0.3, 0.4, 0.5);
   glScalef(4.0, 12.0, 4.0);
   glTranslatef(-24, 0, 24);
 
-  renderObject(&cylinder);
-  glColor3f(0.3, 0.4, 0.5);
+  renderObject(&cylinder,0.3,0.4,0.5);
   for(unsigned int i = 0; i < 5; i++)
   {
     glTranslatef(9.5, 0, 0);
-    renderObject(&cylinder);
+    renderObject(&cylinder,0.3,0.4,0.5);
   }
   glTranslatef(-5*9.5,0,0);
   for(unsigned int i = 0; i < 5; i++)
   {
     glTranslatef(0,0,-9.5);
-    renderObject(&cylinder);
+    renderObject(&cylinder,0.3,0.4,0.5);
   }
   for(unsigned int i = 0; i < 5; i++)
   {
     glTranslatef(9.5,0,0);
-    renderObject(&cylinder);
+    renderObject(&cylinder,0.3,0.4,0.5);
   }
   glTranslatef(0, 0, 33);
-  renderObject(&cylinder);
+  renderObject(&cylinder,0.3,0.4,0.5);
   glTranslatef(-19, 0, 0);
-  renderObject(&cylinder);
+  renderObject(&cylinder,0.3,0.4,0.5);
 
   glTranslatef(-19,0,-13.6);
-  renderObject(&cylinder);
+  renderObject(&cylinder,0.3,0.4,0.5);
   glTranslatef(9,0,0);
-  renderObject(&cylinder);
+  renderObject(&cylinder,0.3,0.4,0.5);
   glTranslatef(9,0,0);
-  renderObject(&cylinder);
+  renderObject(&cylinder,0.3,0.4,0.5);
   glTranslatef(9,0,0);
-  renderObject(&cylinder);
+  renderObject(&cylinder,0.3,0.4,0.5);
   glPopMatrix();
 }
 
@@ -120,31 +118,31 @@ void walls(void)
   glScalef(16.0, 12.0, 1.0);
   glTranslatef(0.0,1.0,0.0);
   glTranslatef(4.7,0,-94);
-  renderObject(&cube);
+  renderObject(&cube,0.5,0.4,0.3);
   for(unsigned int i = 0; i < 7; i++)
   {
     glTranslatef(-1.4,0,0);
-    renderObject(&cube);
+    renderObject(&cube,0.5,0.4,0.3);
   }
   glTranslatef(-1.4,0,190);
   for(unsigned int i = 0; i < 8; i++)
   {
     glTranslatef(1.4,0,0);
-    renderObject(&cube);
+    renderObject(&cube,0.5,0.4,0.3);
   }
   
   glTranslatef(0,0,-58);
-  renderObject(&cube);
+  renderObject(&cube,0.5,0.4,0.3);
   glTranslatef(-1.2,0,0);
-  renderObject(&cube);
+  renderObject(&cube,0.5,0.4,0.3);
   glTranslatef(-1.2,0,0);
-  renderObject(&cube);
+  renderObject(&cube,0.5,0.4,0.3);
   glTranslatef(-0.3,0,-54);
-  renderObject(&cube);
+  renderObject(&cube,0.5,0.4,0.3);
   for(unsigned int i = 0; i < 5; i++)
   {
     glTranslatef(-1.4, 0,0);
-    renderObject(&cube);
+    renderObject(&cube,0.5,0.4,0.3);
   }
   glPopMatrix();
 
@@ -157,16 +155,16 @@ void walls(void)
   for(unsigned int i = 0; i < 7; i++)
   {
     glTranslatef(0,0,-1.65);
-    renderObject(&cube);
+    renderObject(&cube,0.5,0.4,0.3);
   }
-  renderObject(&cube);
+  renderObject(&cube,0.5,0.4,0.3);
 
   glTranslatef(190,0,0.3);
-  renderObject(&cube);
+  renderObject(&cube,0.5,0.4,0.3);
   for(unsigned int i = 0; i < 6; i++)
   {
     glTranslatef(0,0,1.65);
-    renderObject(&cube);
+    renderObject(&cube,0.5,0.4,0.3);
   }
   glPopMatrix();
 }
@@ -179,7 +177,7 @@ void ground(void)
   }
   glPushMatrix();
   glColor3f(0.2,0.1,0.6);
-  renderObject(&plane);
+  renderObject(&plane,0.2,0.1,0.6);
 
   glPopMatrix();
 }
@@ -191,7 +189,7 @@ void eleph(void)
   glTranslatef(70,5,70);
   glRotated(-90,0,1,0);
   glScalef(0.05,0.05,0.05);
-  renderObject(&elephant);
+  renderObject(&elephant,0.3,0.6,0.3);
   glPopMatrix();
 }
 
@@ -205,7 +203,7 @@ void car(void)
     glTranslatef(0,5,0);
     glScalef(0.05,0.05,0.05);
     glRotated(car_angle+90,0.0, 1.0, 0.0);
-    renderObject(&buggy); 
+    renderObject(&buggy,0.1,0.4,0.3); 
     glPopMatrix();
   }
   move_car();

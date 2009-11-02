@@ -49,7 +49,7 @@ int strToInt(const char* c)
 }
 
 
-void renderObject(Mesh *t)
+void renderObject(Mesh *t, float r,float g,float b)
 {
   std::vector<Vec3f> v = t->m_v;
   std::vector<int> vi = t->m_vi;
@@ -57,6 +57,7 @@ void renderObject(Mesh *t)
   std::vector<int> ti = t->m_ti;
   std::vector<Vec3f> nv = t->m_nv;
 
+  glColor3f(r,g,b);
   glBegin(GL_TRIANGLES);
   for(unsigned int i = 0; i < vi.size(); i++)
   {
@@ -65,6 +66,8 @@ void renderObject(Mesh *t)
     glNormal3f(nv[vi[i]].x, v[vi[i]].y, v[vi[i]].z);
   }
   glEnd();
+
+  glPushMatrix();
   if(VIS_N_FACE == 1)
   {
     glColor3f(1.0, 1.0, 1.0);
@@ -75,6 +78,7 @@ void renderObject(Mesh *t)
     glColor3f(1.0, 1.0, 1.0);
     renderPerVertexNormals(t);
   }
+  glPopMatrix();
 }
 
 void generatePerFaceNormals(Mesh *t)
@@ -102,7 +106,7 @@ void renderPerFaceNormals(Mesh *t)
   unsigned int i;
   int c = 0;
 
-  for(i = 0; i < vi.size(); i+= 3)
+  for(i = 0; i < vi.size()-2; i+= 3)
   {
     float x = (((float)1/3))*(v[vi[i]].x + v[vi[i+1]].x + v[vi[i+2]].x);
     float y = (((float)1/3))*(v[vi[i]].y + v[vi[i+1]].y + v[vi[i+2]].y);
