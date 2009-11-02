@@ -62,6 +62,15 @@ void init_elephant(void)
   generatePerVertexNormals(true,&elephant, C_ANGLE);
 }
 
+void re_normalize(void)
+{
+  /*generatePerVertexNormals(true,&buggy, C_ANGLE);
+  generatePerVertexNormals(true,&elephant, C_ANGLE);
+  generatePerVertexNormals(true,&cube, C_ANGLE);
+  generatePerVertexNormals(true,&plane, C_ANGLE);
+  generatePerVertexNormals(true,&cylinder, C_ANGLE);*/
+}
+
 void columns(void)
 {
   if(TEXTURE_OPTION > 0)

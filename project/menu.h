@@ -124,6 +124,7 @@ void change_cangle(int option)
   {
     C_ANGLE = 35;
   }
+  re_normalize();
   std::cout << "crease angle updated to: " << C_ANGLE << std::endl;
   redisplay_all();
 
