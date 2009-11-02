@@ -1,4 +1,5 @@
 #include <vector>
+#include <fstream>
 #include <mathutil.h>
 
 bool isLessCrease(Vec3f, Vec3f, int);
@@ -19,6 +20,8 @@ struct Mesh
 
 void renderPerVertexNormals(Mesh *);
 void renderPerFaceNormals(Mesh *);
+Mesh* load(const char *);
+
 
 void clearMesh(Mesh *t)
 {
@@ -31,6 +34,20 @@ void clearMesh(Mesh *t)
   t->m_nf.clear();
   t->m_nv.clear();
 }
+
+int strToInt(const char* c)
+{
+  int i;
+  if(sscanf(c, "%i", &i) == 1)
+  {
+    return i;
+  }
+  else
+  {
+    return 0;
+  }
+}
+
 
 void renderObject(Mesh *t)
 {
@@ -209,5 +226,95 @@ bool isLessCrease(Vec3f a, Vec3f b, int creaseAngle)
   }
 
   return isLess;
+}
+
+Mesh* load(const char* file)
+{
+  std::ifstream infile(file);
+  if(infile.fail())
+  {
+    std::cout << "Error Opening File: " << file << std::endl;
+    return false;
+  }
+
+  Mesh* model = new Mesh;
+  char current_line[1024];
+
+  while(!infile.eof())
+  {
+    infile.getline(current_line, 1024);
+
+    switch (current_line[0])
+    {
+    case 'v':
+      {
+        float x,y,z;
+        switch(current_line[1])
+        {
+        case 'n':
+          break;
+        case 't':
+          break;
+        default:
+          sscanf(current_line, "v %f %f %f", &x, &y, &z);
+          //std::cout << "Loaded X,Y,Z: " << x << "," << y << "," << z << std::endl;
+          model->m_v.push_back(Vec3f(x,y,z));
+          model->m_t.push_back(Vec3f(0,0,0));
+          break;
+        }
+      }
+      break;
+
+    case 'f':
+      {
+        char* match;
+        match = strtok (current_line, " ");
+        while(match != NULL)
+        {
+          std::string whole = match;
+          if(match[0] != 'f')
+          {
+            int i = 0;
+            int start = 0;
+            int seen = 0;
+            int data;
+            while(match[i] != NULL)
+            {
+              if(match[i] == '/')
+              {
+                data = strToInt(whole.substr(start,i).c_str());
+                //std::cout << "Match: " << data << std::endl;
+                start = i + 1;
+               if(seen == 0)
+                {
+                  model->m_vi.push_back(data-1);
+                  model->m_ti.push_back(data-1);
+                  seen++;
+                }
+                else
+                {
+                  // Texture
+                }
+
+              }
+              if(match[i + 1] == NULL)
+              {
+                // Color
+                data = strToInt(whole.substr(start,i+1).c_str());
+                //std::cout << "Match: " << data << std::endl;
+              }
+              i++;
+            }
+            //std::cout << "Found Match: " << match << std::endl;
+          }
+          match = strtok(NULL, " ");
+        }
+        break;
+      }
+    default: break;
+    }
+  }
+  infile.close();
+  return model;
 }
 

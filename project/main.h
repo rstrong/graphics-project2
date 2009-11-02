@@ -44,7 +44,7 @@ float y_angle   = 0.0;
 
 // car xyz
 float carx = -75;
-float cary = 1;
+float cary = 2;
 float carz = 75;
 Vec3f steer;
 float car_speed = 0;

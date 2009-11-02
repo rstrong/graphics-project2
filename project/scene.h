@@ -2,6 +2,8 @@
 Mesh plane;
 Mesh cylinder;
 Mesh cube;
+Mesh buggy;
+Mesh elephant;
 
 int cur_plane = -1;
 
@@ -40,6 +42,24 @@ void init_cube(void)
   generateCube(&cube);
   generatePerFaceNormals(&cube);
   generatePerVertexNormals(true, &cube, C_ANGLE);
+}
+
+void init_car(void)
+{
+  Mesh *tmp;
+  tmp = load("dirtbug.obj");
+  buggy = *tmp;
+  generatePerFaceNormals(&buggy);
+  generatePerVertexNormals(true,&buggy, C_ANGLE);
+}
+
+void init_elephant(void)
+{
+  Mesh *tmp;
+  tmp = load("elephant.obj");
+  elephant = *tmp;
+  generatePerFaceNormals(&elephant);
+  generatePerVertexNormals(true,&elephant, C_ANGLE);
 }
 
 void columns(void)
@@ -158,9 +178,20 @@ void ground(void)
     load_grass();
   }
   glPushMatrix();
-  //glScalef(0.01, 0.01, 0.01);
+  glColor3f(0.2,0.1,0.6);
   renderObject(&plane);
 
+  glPopMatrix();
+}
+
+void eleph(void)
+{
+  glPushMatrix();
+  glColor3f(0.6,0.6,0.6);
+  glTranslatef(70,5,70);
+  glRotated(-90,0,1,0);
+  glScalef(0.05,0.05,0.05);
+  renderObject(&elephant);
   glPopMatrix();
 }
 
@@ -169,10 +200,12 @@ void car(void)
   if(CAMERA_OPTION != 3)
   {
     glPushMatrix();
-    glColor3f(0.3, 0.4, 0.5);
+    glColor3f(0.1, 0.4, 0.3);
     glTranslatef(carx, cary, carz);
-    glRotated(car_angle,0.0, 1.0, 0.0);
-    glutSolidTeapot(4.0);
+    glTranslatef(0,5,0);
+    glScalef(0.05,0.05,0.05);
+    glRotated(car_angle+90,0.0, 1.0, 0.0);
+    renderObject(&buggy); 
     glPopMatrix();
   }
   move_car();
