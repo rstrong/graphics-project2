@@ -132,6 +132,14 @@ void walls(void)
     renderObject(&cube);
   }
   renderObject(&cube);
+
+  glTranslatef(190,0,0.3);
+  renderObject(&cube);
+  for(unsigned int i = 0; i < 6; i++)
+  {
+    glTranslatef(0,0,1.65);
+    renderObject(&cube);
+  }
   glPopMatrix();
 }
 
