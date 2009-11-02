@@ -47,8 +47,10 @@ void columns(void)
   glPushMatrix();
   glColor3f(0.3, 0.4, 0.5);
   glScalef(4.0, 12.0, 4.0);
-  glTranslatef(-24, 0, 24); 
+  glTranslatef(-24, 0, 24);
+
   renderObject(&cylinder);
+  glColor3f(0.3, 0.4, 0.5);
   for(unsigned int i = 0; i < 5; i++)
   {
     glTranslatef(9.5, 0, 0);

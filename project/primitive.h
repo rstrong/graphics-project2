@@ -123,17 +123,17 @@ void generatePlane(Mesh *i, int type)
   }
 
 
-  for(x = 0; x < 199; x++)
+  for(x = 0; x < 200; x++)
   {
-    for(y = 0; y < 199; y++)
+    for(y = 0; y < 200; y++)
     {
       i->m_vi.push_back(y + (x*200)); i->m_ti.push_back(y + (x*200));
+      i->m_vi.push_back(y + (x*200) + 201); i->m_ti.push_back(y + (x*200) + 201);
       i->m_vi.push_back(y+ (x*200) + 200); i->m_ti.push_back(y+ (x*200) + 200);
-      i->m_vi.push_back(y + (x*200) + 201); i->m_ti.push_back(y + (x*200) + 201);
-
+      
       i->m_vi.push_back(y + (x*200) + 1); i->m_ti.push_back(y + (x*200) + 1);
-      i->m_vi.push_back(y + (x*200) + 201); i->m_ti.push_back(y + (x*200) + 201);
       i->m_vi.push_back(y + (x*200) + 2); i->m_ti.push_back(y + (x*200) + 2);
+      i->m_vi.push_back(y + (x*200) + 201); i->m_ti.push_back(y + (x*200) + 201);
     }
   }
 }

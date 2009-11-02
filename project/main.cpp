@@ -65,7 +65,6 @@ void top_display(void)
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glLoadIdentity();
   glColor3f(1.0, 0.0, 0.0);
- // load_textures(); 
   glShadeModel(GL_SMOOTH);
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_LIGHTING);
@@ -74,21 +73,15 @@ void top_display(void)
   glLightfv(GL_LIGHT0, GL_SPECULAR, SpecularLight);
   glLightfv(GL_LIGHT0, GL_POSITION, LightPos);
   glEnable(GL_LIGHT0);
-  glEnable(GL_COLOR_MATERIAL);
-  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-  if(MATERIAL_OPTION == 0)
-  {
-    GLfloat mat_diffuse[] = { 1.0, 1.0, 0.0, 0.0 };
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, mat_diffuse); 
-  }
-  if(MATERIAL_OPTION == 1)
-  {
-    glMaterialfv(GL_FRONT, GL_SPECULAR, SpecRef);
-  }
+
   if(MATERIAL_OPTION == 2)
   {
-    glMaterialfv(GL_FRONT, GL_SPECULAR, SpecRef);
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+    glEnable(GL_COLOR_MATERIAL);
   }
+  glMaterialfv(GL_FRONT,GL_AMBIENT_AND_DIFFUSE,mat_am);
+  glMaterialfv(GL_FRONT,GL_SPECULAR,mat_spec);
+
   glMateriali(GL_FRONT, GL_SHININESS, Shine);
   glEnable(GL_NORMALIZE);
 

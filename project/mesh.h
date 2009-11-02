@@ -50,10 +50,12 @@ void renderObject(Mesh *t)
   glEnd();
   if(VIS_N_FACE == 1)
   {
+    glColor3f(1.0, 1.0, 1.0);
     renderPerFaceNormals(t);
   }
   if(VIS_N_VER == 1)
   {
+    glColor3f(1.0, 1.0, 1.0);
     renderPerVertexNormals(t);
   }
 }

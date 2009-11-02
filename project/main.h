@@ -26,6 +26,11 @@ GLfloat DiffuseLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SpecularLight[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 GLfloat SpecRef[] = {0.7f, 0.7f, 0.7f, 1.0f};
 GLfloat LightPos[] = {0.0f, 25.0f, 25.0f, 1.0f};
+
+//material
+GLfloat mat_am[] = {0.11f,0.06f,0.11f,1.0f};
+GLfloat mat_dif[] = {0.43f,0.47f,0.54f,1.0f};
+GLfloat mat_spec[] = {0.33f,0.33f,0.52f,1.0f};
 GLubyte Shine = 128;
 //controls
 int mouse_button;

@@ -133,15 +133,22 @@ void change_mat(int option)
 {
   if(option == 0)
   {
+    glDisable(GL_COLOR_MATERIAL);
     MATERIAL_OPTION = 0;
+    mat_am[0] = 0.93; mat_dif[1] = 0.80; mat_dif[2] = 0.93;
+    mat_spec[0] = 0.33; mat_spec[1] = 0.33; mat_spec[2] = 0.52;
   }
   if(option == 1)
   {
     MATERIAL_OPTION = 1;
+    mat_am[0] = 0.93; mat_dif[1] = 0.80; mat_dif[2] = 0.93;
+    mat_spec[0] = 0.80; mat_spec[1] = 0.80; mat_spec[2] = 0.80;
   }
   if(option == 2)
   {
     MATERIAL_OPTION = 2;
+    mat_am[0] = 0.11; mat_am[1] = 0.06;; mat_am[2] = 0.11;
+    mat_spec[0] = 0.33; mat_spec[1] = 0.33; mat_spec[2] = 0.52;
   }
   std::cout << "material updated to: " << MATERIAL_OPTION << std::endl;
   redisplay_all();
