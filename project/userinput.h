@@ -48,7 +48,7 @@ void main_keyboard(unsigned char key, int x, int y)
       }
       if(CAMERA_OPTION == 3)
       {
-        eyey += 0.1;
+        cary += 0.1;
       }
       break;
     case 's' : 
@@ -61,7 +61,7 @@ void main_keyboard(unsigned char key, int x, int y)
       }
       if(CAMERA_OPTION == 3)
       {
-        eyey -= 0.1;
+        cary -= 0.1;
       }
       break;
     case 'u' :
@@ -162,7 +162,7 @@ void special_keyboard(int key, int x, int y)
   case GLUT_KEY_UP:
     if(CAMERA_OPTION == 0 || CAMERA_OPTION == 3)
     {
-      car_speed += 0.01;
+      car_speed += 0.1;
     }
     if(CAMERA_OPTION == 2)
     {
@@ -172,7 +172,7 @@ void special_keyboard(int key, int x, int y)
   case GLUT_KEY_DOWN:
     if(CAMERA_OPTION == 0 || CAMERA_OPTION == 3)
     {
-      car_speed -= 0.01;
+      car_speed -= 0.1;
     }
     if(CAMERA_OPTION == 2)
     {
@@ -215,15 +215,6 @@ void special_keyboard(int key, int x, int y)
     eyez = eye_mag*sin((float)eye_angle*PI/180);
     std::cout << "New Eyes: " << eyex << " " << eyey << " " << eyez << std::endl;
     top_display();
-  }
-  if(CAMERA_OPTION == 3)
-  {
-    eyex = (float)carx/100;
-    eyey = (float)cary/100;
-    eyez = (float)carz/100;
-    lookx = (float)(carx + steer.x)/100 + 1;
-    looky = (float)(cary / 100) + 0.1;
-    lookz = (float)(carz + steer.z)/100  +1;
   }
   redisplay_all();
 }

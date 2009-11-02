@@ -170,6 +170,9 @@ void change_camera(int option)
     eyex = 1;
     eyey = 2;
     eyez = 0;
+    lookx = 0;
+    looky = 0;
+    lookz = 0;
     eye_mag = 1;
   }
   if(option == 1)
@@ -183,12 +186,6 @@ void change_camera(int option)
   if(option == 3)
   {
     CAMERA_OPTION = 3;
-    eyex = (float)carx/100;
-    eyey = (float)cary/100;
-    eyez = (float)carz/100;
-    lookx = (float)(carx + steer.x)/100  + 1;
-    looky = (float)(cary / 100) + 0.1;
-    lookz = (float)(carz + steer.z)/100 + 1;
   }
   std::cout << "EYEZ: " << eyex << " " << eyey << " " << eyez << " | " << lookx << " " << looky << " " << lookz << std::endl;
   std::cout << "camera updated to: " << CAMERA_OPTION << std::endl;
