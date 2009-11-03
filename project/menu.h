@@ -142,7 +142,7 @@ void change_mat(int option)
   if(option == 1)
   {
     MATERIAL_OPTION = 1;
-    mat_am[0] = 0.93; mat_dif[1] = 0.80; mat_dif[2] = 0.93;
+    mat_am[0] = 0.53; mat_dif[1] = 0.50; mat_dif[2] = 0.53;
     mat_spec[0] = 0.80; mat_spec[1] = 0.80; mat_spec[2] = 0.80;
   }
   if(option == 2)
